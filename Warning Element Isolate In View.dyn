@@ -1,0 +1,511 @@
+{
+  "Uuid": "621be8b5-d1ed-4d70-82aa-72b700c9713f",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Warning Element Isolate In View",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
+      "HintPath": "",
+      "InputValue": "No file selected.",
+      "NodeType": "ExtensionNode",
+      "Id": "8fb3795270664ebf9f50e2089bf5525a",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a203b0991d6d4a2a92826296c529be43",
+          "Name": "",
+          "Description": "File Path",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows you to select a file on the system to get its file path."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Archilab.Grimshaw.Elements.Warning.ParseHtml@var",
+      "Id": "2791b004523f4665b0af2d270f92ac37",
+      "Inputs": [
+        {
+          "Id": "30357c65a555446a837dd6c73a153ec2",
+          "Name": "filePath",
+          "Description": "File Path to HTML report.\n\nvar",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "b484c5a5da7d4163801741b45bd00a16",
+          "Name": "Warnings",
+          "Description": "List of Warning objects.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Parse HTML Warning Report.\n\nWarning.ParseHtml (filePath: var): Warning[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Archilab.Grimshaw.Elements.Warning.Elements",
+      "Id": "4794d27ec60d43929bc9bee9095ebc95",
+      "Inputs": [
+        {
+          "Id": "7432dd1d36bf4b99bde0c3050f7231b8",
+          "Name": "warning",
+          "Description": "Archilab.Grimshaw.Elements.Warning",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "366e9f3c586f4f2eb4dc27b3d2bf67ae",
+          "Name": "WarningElement[]",
+          "Description": "WarningElement[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "List of Elements\n\nWarning.Elements: WarningElement[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Archilab.Grimshaw.Elements.WarningElement.Id",
+      "Id": "4f2855876b6b421eb2b349bbcb960c95",
+      "Inputs": [
+        {
+          "Id": "3d6264b0d6b84d9b89b9b8d6eb4db164",
+          "Name": "warningElement",
+          "Description": "Archilab.Grimshaw.Elements.WarningElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "21a505abd70943ca8068473357298998",
+          "Name": "int",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Revit Id\n\nWarningElement.Id: int"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.List.Flatten@var[]..[],int",
+      "Id": "4cc26e2e7bc8430b832265bd920e7b4d",
+      "Inputs": [
+        {
+          "Id": "235329510cbd470b81ec66110183c1a5",
+          "Name": "list",
+          "Description": "List to flatten.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d28c1dbbe0ca4905b1a62c7a8b907067",
+          "Name": "amount",
+          "Description": "Layers of list nesting to remove (-1 will remove all list nestings)\n\nint\nDefault value : -1",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "1cb58a46f6f24a1d812cdc1a7fc58f29",
+          "Name": "list",
+          "Description": "Flattened list by amount",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Flattens a nested list of lists by a certain amount.\n\nList.Flatten (list: var[]..[], amount: int = -1): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "1;",
+      "Id": "781d1bbbd7264ceba5919fc4b43e17b8",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "62d6f34f3b79471fbac1712d163e2352",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Archilab.Grimshaw.Selection.Select.ByElementId@var",
+      "Id": "0299fac2567b45448abd2357fadb981d",
+      "Inputs": [
+        {
+          "Id": "329d448dc78346f0ad6349c9252a9dd1",
+          "Name": "id",
+          "Description": "ElementId, String, Guid or Integer id of the element.\n\nvar",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "68432c80352346ec80c36dcd5f954dd1",
+          "Name": "Element",
+          "Description": "Found element or null.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Select Element by Id\n\nSelect.ByElementId (id: var): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
+      "FunctionSignature": "dfc2063c-a98c-4afa-8872-83cf333a7439",
+      "FunctionType": "Graph",
+      "NodeType": "FunctionNode",
+      "Id": "2917be73fa694434b1dd252c28f80c5c",
+      "Inputs": [
+        {
+          "Id": "b32fd03a4cec4f1194a441cadfac747c",
+          "Name": "Element",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "65bdc39b14fe4e31ad608a67b53b4f30",
+          "Name": "View",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "20cdc283c53e48df9121bb28affd999d",
+          "Name": "Element",
+          "Description": "return value",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "This node will take input of elements and a view to isolate selected elements in a view."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Quasar.ViewUtility.ActiveView",
+      "Id": "070906721bde4a3b80f422e01d7365a6",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2740e1c9903a4578be7e0c4c88738fdd",
+          "Name": "ActiveView",
+          "Description": "Return ActiveView",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Current Document Active View\n\nViewUtility.ActiveView ( ): Element"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "a203b0991d6d4a2a92826296c529be43",
+      "End": "30357c65a555446a837dd6c73a153ec2",
+      "Id": "7617b520ea924750abe94141dd37bb90",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b484c5a5da7d4163801741b45bd00a16",
+      "End": "7432dd1d36bf4b99bde0c3050f7231b8",
+      "Id": "5742bb192bdf4e8bab4ad84eb4daf43b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "366e9f3c586f4f2eb4dc27b3d2bf67ae",
+      "End": "3d6264b0d6b84d9b89b9b8d6eb4db164",
+      "Id": "b0793f2de0c24cc0a9f9ff7b0cabf067",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "21a505abd70943ca8068473357298998",
+      "End": "235329510cbd470b81ec66110183c1a5",
+      "Id": "34a15bb440644953b81101db876d118b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "1cb58a46f6f24a1d812cdc1a7fc58f29",
+      "End": "329d448dc78346f0ad6349c9252a9dd1",
+      "Id": "206143a394a5410b93c36ed990e610b6",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "62d6f34f3b79471fbac1712d163e2352",
+      "End": "d28c1dbbe0ca4905b1a62c7a8b907067",
+      "Id": "debbc8de830d445396adec79d577a66e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "68432c80352346ec80c36dcd5f954dd1",
+      "End": "b32fd03a4cec4f1194a441cadfac747c",
+      "Id": "d98ec023fa244d44ab656173564b2f7c",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "2740e1c9903a4578be7e0c4c88738fdd",
+      "End": "65bdc39b14fe4e31ad608a67b53b4f30",
+      "Id": "375626f019694e9383e60c293804b603",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [
+    "dfc2063c-a98c-4afa-8872-83cf333a7439"
+  ],
+  "NodeLibraryDependencies": [
+    {
+      "Name": "archi-lab.net",
+      "Version": "2016.13.1",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "2791b004523f4665b0af2d270f92ac37",
+        "4794d27ec60d43929bc9bee9095ebc95",
+        "4f2855876b6b421eb2b349bbcb960c95",
+        "0299fac2567b45448abd2357fadb981d",
+        "2917be73fa694434b1dd252c28f80c5c"
+      ]
+    },
+    {
+      "Name": "Quasar",
+      "Version": "2.1.3",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "070906721bde4a3b80f422e01d7365a6"
+      ]
+    }
+  ],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.13",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "2.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.13.1.3887",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Name": "File Path",
+        "ShowGeometry": true,
+        "Id": "8fb3795270664ebf9f50e2089bf5525a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 58.400000000000091,
+        "Y": 238.40000000000003
+      },
+      {
+        "Name": "Warning.ParseHtml",
+        "ShowGeometry": true,
+        "Id": "2791b004523f4665b0af2d270f92ac37",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 288.57521981438674,
+        "Y": 248.86994085830719
+      },
+      {
+        "Name": "Warning.Elements",
+        "ShowGeometry": true,
+        "Id": "4794d27ec60d43929bc9bee9095ebc95",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 575.9233825408578,
+        "Y": 247.89752744806526
+      },
+      {
+        "Name": "WarningElement.Id",
+        "ShowGeometry": true,
+        "Id": "4f2855876b6b421eb2b349bbcb960c95",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 903.62670179236591,
+        "Y": 251.78718108903274
+      },
+      {
+        "Name": "List.Flatten",
+        "ShowGeometry": true,
+        "Id": "4cc26e2e7bc8430b832265bd920e7b4d",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1240.0817417360508,
+        "Y": 334.4423209595912
+      },
+      {
+        "Name": "Code Block",
+        "ShowGeometry": true,
+        "Id": "781d1bbbd7264ceba5919fc4b43e17b8",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1030.0,
+        "Y": 435.0
+      },
+      {
+        "Name": "Select.ByElementId",
+        "ShowGeometry": true,
+        "Id": "0299fac2567b45448abd2357fadb981d",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1513.3299100140148,
+        "Y": 348.05610870297721
+      },
+      {
+        "Name": "Isolate in View",
+        "ShowGeometry": true,
+        "Id": "2917be73fa694434b1dd252c28f80c5c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1848.9870355652488,
+        "Y": 422.5481354240938
+      },
+      {
+        "Name": "ViewUtility.ActiveView",
+        "ShowGeometry": true,
+        "Id": "070906721bde4a3b80f422e01d7365a6",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1509.4287056030753,
+        "Y": 560.45093984219227
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "5a4f13087f2d488483142e7fb2348583",
+        "Title": "Script uploaded by Prem Talreja\n\nPackage used - Archilab",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 513.66059498168761,
+        "Top": 109.55755379288962,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 69.1356722048348,
+    "Y": 196.60124812052931,
+    "Zoom": 0.40784290626975339
+  }
+}
