@@ -1,0 +1,328 @@
+{
+  "Uuid": "559d69c2-20b4-4de5-895d-a3a0f493330d",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "COBie Set1",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
+      "FunctionSignature": "57b36d09-871a-480e-9e0e-bc3a72351824",
+      "FunctionType": "Graph",
+      "NodeType": "FunctionNode",
+      "Id": "bdecc2029ea94557b204eb3c4ba78f22",
+      "Inputs": [
+        {
+          "Id": "1c75271d619d41a2a45b8b641bec3bf9",
+          "Name": "Elements",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c30e2311fc5140138f55e4b79aed79e8",
+          "Name": "Element",
+          "Description": "return value",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Fill up COBie.Component.Description by this code, Make sure COBie.Component.Name filled."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
+      "FunctionSignature": "de363385-3c1c-4623-b514-c19d81e40e35",
+      "FunctionType": "Graph",
+      "NodeType": "FunctionNode",
+      "Id": "262b6526a0254906988f0ca9cb05561c",
+      "Inputs": [
+        {
+          "Id": "f38466a216c449c2abe57777d537fd72",
+          "Name": "Elements",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "be10b1264473463c8f37b1986bc2a1d9",
+          "Name": "Element",
+          "Description": "return value",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "COBie.CreatedOn data fill live date and time on parameter"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
+      "FunctionSignature": "33a14c6e-2096-43da-ba0e-26215bb2138f",
+      "FunctionType": "Graph",
+      "NodeType": "FunctionNode",
+      "Id": "f9e2d9898e694601973cd6d1c9eb4a7f",
+      "Inputs": [
+        {
+          "Id": "ae88414cd781476fb9c3a0065cfe9182",
+          "Name": "Elements",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3b79fd05398344968fd9e3ff52e7419d",
+          "Name": "Element",
+          "Description": "return value",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Set Serial Number by selecting elements"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
+      "FunctionSignature": "08ca3bd7-69ea-40be-ab1c-fc50ac1e8fd5",
+      "FunctionType": "Graph",
+      "NodeType": "FunctionNode",
+      "Id": "5e6e7bf9870f4bad8945b21e7d15aeb7",
+      "Inputs": [
+        {
+          "Id": "2cc50307496a4efcb9250a3a3b09eb20",
+          "Name": "Element",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "2193fdc47243466b9e95bff949b3a2b2",
+          "Name": "Element",
+          "Description": "return value",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Fill type category by selecting elements."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
+      "FunctionSignature": "eb29e655-5e37-4967-9877-0ff0882eef89",
+      "FunctionType": "Graph",
+      "NodeType": "FunctionNode",
+      "Id": "3da3186fd95442b1925e565ec0555667",
+      "Inputs": [
+        {
+          "Id": "fbe0b4fac8be4c249ace9d8e477b2ba6",
+          "Name": "Element",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "fc2d903e70df400490e730c50c3de124",
+          "Name": "Element",
+          "Description": "return value",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Fill Element Name by Selecting Elements"
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementsSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "cbe32128-8518-4e97-a9ce-16f5eb415ca8-000e04b2",
+        "cbe32128-8518-4e97-a9ce-16f5eb415ca8-000e04bd",
+        "cbe32128-8518-4e97-a9ce-16f5eb415ca8-000e04c6"
+      ],
+      "Id": "4ec4607b610846c2898d208a7e4eb90f",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "03209b5f6e4145888060604715d57897",
+          "Name": "Elements",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "03209b5f6e4145888060604715d57897",
+      "End": "1c75271d619d41a2a45b8b641bec3bf9",
+      "Id": "8be122b4f6fb4652a90e64bcb3eb02c1"
+    },
+    {
+      "Start": "03209b5f6e4145888060604715d57897",
+      "End": "f38466a216c449c2abe57777d537fd72",
+      "Id": "26f782c942124fd8b21e99ccc563de82"
+    },
+    {
+      "Start": "03209b5f6e4145888060604715d57897",
+      "End": "ae88414cd781476fb9c3a0065cfe9182",
+      "Id": "2d8d25d8f873401c887ebf5ce4be749a"
+    },
+    {
+      "Start": "03209b5f6e4145888060604715d57897",
+      "End": "2cc50307496a4efcb9250a3a3b09eb20",
+      "Id": "887815ee0fe54f489aebb870d96d6021"
+    },
+    {
+      "Start": "03209b5f6e4145888060604715d57897",
+      "End": "fbe0b4fac8be4c249ace9d8e477b2ba6",
+      "Id": "23950652caff4c94bcfaba861c65b3b1"
+    }
+  ],
+  "Dependencies": [
+    "57b36d09-871a-480e-9e0e-bc3a72351824",
+    "de363385-3c1c-4623-b514-c19d81e40e35",
+    "33a14c6e-2096-43da-ba0e-26215bb2138f",
+    "08ca3bd7-69ea-40be-ab1c-fc50ac1e8fd5",
+    "eb29e655-5e37-4967-9877-0ff0882eef89"
+  ],
+  "NodeLibraryDependencies": [
+    {
+      "Name": "Golden Eagle",
+      "Version": "2022.3.15",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "bdecc2029ea94557b204eb3c4ba78f22",
+        "262b6526a0254906988f0ca9cb05561c",
+        "f9e2d9898e694601973cd6d1c9eb4a7f",
+        "5e6e7bf9870f4bad8945b21e7d15aeb7",
+        "3da3186fd95442b1925e565ec0555667"
+      ]
+    }
+  ],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.3.0.5885",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "Id": "bdecc2029ea94557b204eb3c4ba78f22",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "COBieComponentDescription",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 487.20000000000005,
+        "Y": 204.0
+      },
+      {
+        "Id": "262b6526a0254906988f0ca9cb05561c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "COBieCreatedOn",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 489.60000000000014,
+        "Y": 306.4
+      },
+      {
+        "Id": "f9e2d9898e694601973cd6d1c9eb4a7f",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "COBieSerialNumber",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 489.6,
+        "Y": 409.6
+      },
+      {
+        "Id": "5e6e7bf9870f4bad8945b21e7d15aeb7",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "COBieTypeCategory",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 488.80000000000007,
+        "Y": 515.19999999999993
+      },
+      {
+        "Id": "3da3186fd95442b1925e565ec0555667",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "COBieTypeName",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 492.80000000000007,
+        "Y": 622.4
+      },
+      {
+        "Id": "4ec4607b610846c2898d208a7e4eb90f",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Select Model Elements",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 139.2,
+        "Y": 369.6
+      }
+    ],
+    "Annotations": [],
+    "X": 90.698000000000036,
+    "Y": -62.446000000000026,
+    "Zoom": 0.8425
+  }
+}
