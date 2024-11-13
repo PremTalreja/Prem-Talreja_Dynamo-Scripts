@@ -1,0 +1,185 @@
+{
+  "Uuid": "06c6d711-e9e7-4f69-adee-b8c221fd2f5c",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "Elements Level Change",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementsSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "dca32b8f-7451-4dd8-b22d-280e26616c0a-000e04b0",
+        "dca32b8f-7451-4dd8-b22d-280e26616c0a-000e0510",
+        "dca32b8f-7451-4dd8-b22d-280e26616c0a-000e051e",
+        "dca32b8f-7451-4dd8-b22d-280e26616c0a-000e0522",
+        "dca32b8f-7451-4dd8-b22d-280e26616c0a-000e0529",
+        "dca32b8f-7451-4dd8-b22d-280e26616c0a-000e052e",
+        "dca32b8f-7451-4dd8-b22d-280e26616c0a-000e0535"
+      ],
+      "Id": "83d388f3ac624f89a4e0a6c7ee852f59",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f5f6c5a16412425597c15dd99c0a7079",
+          "Name": "Elements",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
+      "FunctionSignature": "1ad046da-824d-44a1-b168-3fbe0c012b3f",
+      "FunctionType": "Graph",
+      "NodeType": "FunctionNode",
+      "Id": "2cf6930c7789475f973dfb9aa73c3bf3",
+      "Inputs": [
+        {
+          "Id": "33a7028d5d714909b5d5aa8de127aed6",
+          "Name": "element",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a2ef1cf38dd34ddf9831ced4d9849370",
+          "Name": "level",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "dd187ee0b3984b08b034cc6daf4a2745",
+          "Name": "Result",
+          "Description": "return value",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Change the element to the selected level without moving the element.\r\nDoesn't work with hosted family (Wall Based) and Work Plane based family (without Reference Level or with read-only Schedule Level)."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Levels, DSRevitNodesUI",
+      "SelectedIndex": 1,
+      "SelectedString": "Level 2",
+      "NodeType": "ExtensionNode",
+      "Id": "70413f5bf30148ce9f6bf00f3a7b043b",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "7e6031e2fb2e4d10869735ef711de9f6",
+          "Name": "Levels",
+          "Description": "The selected Levels",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a level in the active document"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "f5f6c5a16412425597c15dd99c0a7079",
+      "End": "33a7028d5d714909b5d5aa8de127aed6",
+      "Id": "ff1094494dec4a9380788b2fdadad811"
+    },
+    {
+      "Start": "7e6031e2fb2e4d10869735ef711de9f6",
+      "End": "a2ef1cf38dd34ddf9831ced4d9849370",
+      "Id": "eace4dd4d9e94c7987e6081b5a487630"
+    }
+  ],
+  "Dependencies": [
+    "1ad046da-824d-44a1-b168-3fbe0c012b3f"
+  ],
+  "NodeLibraryDependencies": [
+    {
+      "Name": "Genius Loci",
+      "Version": "2021.11.10",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "2cf6930c7789475f973dfb9aa73c3bf3"
+      ]
+    }
+  ],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.3.0.5885",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "Id": "83d388f3ac624f89a4e0a6c7ee852f59",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Select Model Elements",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 128.80000000000007,
+        "Y": 289.6
+      },
+      {
+        "Id": "2cf6930c7789475f973dfb9aa73c3bf3",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Element Change Level",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 537.05695784024215,
+        "Y": 328.45408488014687
+      },
+      {
+        "Id": "70413f5bf30148ce9f6bf00f3a7b043b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Levels",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 267.99944181424758,
+        "Y": 443.02040509214476
+      }
+    ],
+    "Annotations": [],
+    "X": 68.204982925846366,
+    "Y": -0.95176396174070987,
+    "Zoom": 0.8887892282971559
+  }
+}
