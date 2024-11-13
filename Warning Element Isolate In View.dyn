@@ -11,8 +11,8 @@
   "Nodes": [
     {
       "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
-      "HintPath": "",
-      "InputValue": "No file selected.",
+      "HintPath": "D:\\LINKEDINPOSTS\\Phase 2\\Contents\\45_Revit Warnings\\Dyn\\rac_advanced_sample_project_Error Report.html",
+      "InputValue": ".\\rac_advanced_sample_project_Error Report.html",
       "NodeType": "ExtensionNode",
       "Id": "8fb3795270664ebf9f50e2089bf5525a",
       "Inputs": [],
@@ -180,36 +180,6 @@
       "Description": "Allows for DesignScript code to be authored directly"
     },
     {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "NodeType": "FunctionNode",
-      "FunctionSignature": "Archilab.Grimshaw.Selection.Select.ByElementId@var",
-      "Id": "0299fac2567b45448abd2357fadb981d",
-      "Inputs": [
-        {
-          "Id": "329d448dc78346f0ad6349c9252a9dd1",
-          "Name": "id",
-          "Description": "ElementId, String, Guid or Integer id of the element.\n\nvar",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "68432c80352346ec80c36dcd5f954dd1",
-          "Name": "Element",
-          "Description": "Found element or null.",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Auto",
-      "Description": "Select Element by Id\n\nSelect.ByElementId (id: var): var[]..[]"
-    },
-    {
       "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
       "FunctionSignature": "dfc2063c-a98c-4afa-8872-83cf333a7439",
       "FunctionType": "Graph",
@@ -268,6 +238,35 @@
       ],
       "Replication": "Auto",
       "Description": "Current Document Active View\n\nViewUtility.ActiveView ( ): Element"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementById, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "Id": "d4bf9d3cddd1404b866f2cf2013da806",
+      "Inputs": [
+        {
+          "Id": "1d495a8ee95c431c80a0457daa89d549",
+          "Name": "Id",
+          "Description": "Element Id as string, int or ElementId",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "2110bcb14fa94467b652442ab1de0186",
+          "Name": "Element",
+          "Description": "The list of elements matching the query.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Gets the Element with the specified Id"
     }
   ],
   "Connectors": [
@@ -297,8 +296,8 @@
     },
     {
       "Start": "1cb58a46f6f24a1d812cdc1a7fc58f29",
-      "End": "329d448dc78346f0ad6349c9252a9dd1",
-      "Id": "206143a394a5410b93c36ed990e610b6",
+      "End": "1d495a8ee95c431c80a0457daa89d549",
+      "Id": "f5dc78ccd82b4aec98b55d51b1368298",
       "IsHidden": "False"
     },
     {
@@ -308,15 +307,15 @@
       "IsHidden": "False"
     },
     {
-      "Start": "68432c80352346ec80c36dcd5f954dd1",
-      "End": "b32fd03a4cec4f1194a441cadfac747c",
-      "Id": "d98ec023fa244d44ab656173564b2f7c",
-      "IsHidden": "False"
-    },
-    {
       "Start": "2740e1c9903a4578be7e0c4c88738fdd",
       "End": "65bdc39b14fe4e31ad608a67b53b4f30",
       "Id": "375626f019694e9383e60c293804b603",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "2110bcb14fa94467b652442ab1de0186",
+      "End": "b32fd03a4cec4f1194a441cadfac747c",
+      "Id": "04bb7105a4824df3a14d9bd1507ac58d",
       "IsHidden": "False"
     }
   ],
@@ -332,7 +331,6 @@
         "2791b004523f4665b0af2d270f92ac37",
         "4794d27ec60d43929bc9bee9095ebc95",
         "4f2855876b6b421eb2b349bbcb960c95",
-        "0299fac2567b45448abd2357fadb981d",
         "2917be73fa694434b1dd252c28f80c5c"
       ]
     },
@@ -342,6 +340,13 @@
       "ReferenceType": "Package",
       "Nodes": [
         "070906721bde4a3b80f422e01d7365a6"
+      ]
+    },
+    {
+      "Name": "rac_advanced_sample_project_Error Report.html",
+      "ReferenceType": "External",
+      "Nodes": [
+        "8fb3795270664ebf9f50e2089bf5525a"
       ]
     }
   ],
@@ -409,8 +414,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 288.57521981438674,
-        "Y": 248.86994085830719
+        "X": 392.96867138295522,
+        "Y": 442.53528841962628
       },
       {
         "Name": "Warning.Elements",
@@ -419,8 +424,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 575.9233825408578,
-        "Y": 247.89752744806526
+        "X": 577.337890109078,
+        "Y": 245.06851231162466
       },
       {
         "Name": "WarningElement.Id",
@@ -453,16 +458,6 @@
         "Y": 435.0
       },
       {
-        "Name": "Select.ByElementId",
-        "ShowGeometry": true,
-        "Id": "0299fac2567b45448abd2357fadb981d",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": 1513.3299100140148,
-        "Y": 348.05610870297721
-      },
-      {
         "Name": "Isolate in View",
         "ShowGeometry": true,
         "Id": "2917be73fa694434b1dd252c28f80c5c",
@@ -481,19 +476,29 @@
         "Excluded": false,
         "X": 1509.4287056030753,
         "Y": 560.45093984219227
+      },
+      {
+        "Name": "Element By Id",
+        "ShowGeometry": true,
+        "Id": "d4bf9d3cddd1404b866f2cf2013da806",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1545.4765463754975,
+        "Y": 342.53403987177785
       }
     ],
     "Annotations": [
       {
         "Id": "5a4f13087f2d488483142e7fb2348583",
-        "Title": "Script uploaded by Prem Talreja\n\nPackage used - Archilab",
+        "Title": "Contact premtalreja7@gmail.com for any queries",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
         "HeightAdjustment": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": 513.66059498168761,
+        "Left": 514.71755236886315,
         "Top": 109.55755379288962,
         "Width": 0.0,
         "Height": 0.0,
@@ -504,8 +509,8 @@
         "Background": "#FFC1D676"
       }
     ],
-    "X": 69.1356722048348,
-    "Y": 196.60124812052931,
-    "Zoom": 0.40784290626975339
+    "X": -2.6285173122322476,
+    "Y": 57.139083314119205,
+    "Zoom": 0.55178821158156111
   }
 }
