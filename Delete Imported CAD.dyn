@@ -1,0 +1,206 @@
+{
+  "Uuid": "3c9d0464-8643-5ffe-96e5-ab1769818209",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Imported CAD_Delete",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "CAD.CADLinked.GetCadLinked@bool",
+      "Id": "7e5ee1dbbb3646418dcde4e73780f0a7",
+      "Inputs": [
+        {
+          "Id": "e6b213cd111d46aea408e589a0c69b5a",
+          "Name": "fresh",
+          "Description": "fresh Linked,Defaut True\n\nbool\nDefault value : true",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4c75e710631d4e45b2d900da12d80141",
+          "Name": "importinstance",
+          "Description": "All Linked Import In Model",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0aa647e4f3ce4ae0a3854069e6eeb2d1",
+          "Name": "importinstancename",
+          "Description": "Name Linked CADLinked Imported",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get All Linked CADLinked Importinstance In Model\n\nCADLinked.GetCadLinked (fresh: bool = true): var[]..[]"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "NodeType": "BooleanInputNode",
+      "InputValue": true,
+      "Id": "499090370f9147ad98734647fb9e5c11",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "36068666aa4f418baf583d3ce0e90c58",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Selection between a true and false."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.Delete@Revit.Elements.Element",
+      "Id": "2c43d6b39a814136ba94b5053ac73b72",
+      "Inputs": [
+        {
+          "Id": "bf266cddcaa241fa9f9003cd954b222c",
+          "Name": "element",
+          "Description": "The element to delete.\n\nElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "734c69b33ba14b30ae0792ae19eb20fb",
+          "Name": "int[]",
+          "Description": "The list of element id's deleted, including any dependent elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Delete the element and any elements that are totally dependent upon the element.\n\nElement.Delete (element: Element): int[]"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "4c75e710631d4e45b2d900da12d80141",
+      "End": "bf266cddcaa241fa9f9003cd954b222c",
+      "Id": "78444a6748614ca99b3f1c504f31c38a"
+    },
+    {
+      "Start": "36068666aa4f418baf583d3ce0e90c58",
+      "End": "e6b213cd111d46aea408e589a0c69b5a",
+      "Id": "0f03f1458f8347e8b124c29f12a5b3e3"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.3.0.5885",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "Id": "7e5ee1dbbb3646418dcde4e73780f0a7",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "CADLinked.GetCadLinked",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 750.3205339052347,
+        "Y": 403.861628405545
+      },
+      {
+        "Id": "499090370f9147ad98734647fb9e5c11",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Boolean",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 499.31328572070151,
+        "Y": 410.07214831671104
+      },
+      {
+        "Id": "2c43d6b39a814136ba94b5053ac73b72",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Element.Delete",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 1015.4388605647875,
+        "Y": 419.99008945396332
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "5e0b1551ad6b42cc9096bc8f940e6796",
+        "Title": "",
+        "Nodes": [
+          "5a04c9b596a546f480976a73c680a2a8"
+        ],
+        "Left": 370.30324575981263,
+        "Top": 184.98581747112183,
+        "Width": 308.0,
+        "Height": 97.6,
+        "FontSize": 36.0,
+        "InitialTop": 238.18581747112182,
+        "InitialHeight": 140.0,
+        "TextblockHeight": 43.2,
+        "Background": "#FFFF7BAC"
+      },
+      {
+        "Id": "5a04c9b596a546f480976a73c680a2a8",
+        "Title": "Contact - premtalreja7@gmail.com for any queries",
+        "Nodes": [],
+        "Left": 380.30324575981263,
+        "Top": 238.18581747112182,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": -232.19617846482015,
+    "Y": -102.69117677310095,
+    "Zoom": 0.959788699581263
+  }
+}
