@@ -1,0 +1,299 @@
+{
+  "Uuid": "33615cc9-9930-4335-ae19-7966a12a29a8",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "Topography_Scan to BIM",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [
+    {
+      "Id": "ec172a310ced4c2988534e657bfd9e90",
+      "Name": "Number of Points",
+      "Type": "number",
+      "Value": "2000",
+      "MaximumValue": 100000.0,
+      "MinimumValue": 1000.0,
+      "StepValue": 500.0,
+      "NumberType": "Double",
+      "Description": "A slider that produces numeric values."
+    }
+  ],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
+      "FunctionSignature": "94c53925-d6eb-438c-acac-a953771a86ad",
+      "FunctionType": "Graph",
+      "NodeType": "FunctionNode",
+      "Id": "72b67919181b458d8acd6a9666ec344e",
+      "Inputs": [
+        {
+          "Id": "61b4260cfac347afa2c8176dadd040df",
+          "Name": "PointSampleSize",
+          "Description": "This is the number of points to take\nfrom within the selected region.\n\nPlease note that the actual number of\nPoints output may vary from this\nnumber if a Sectionbox has been used.\n\nint\nDefault value : 1000",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3e1674d123cd45e3a318ef95e8d7c22d",
+          "Name": "Refresh",
+          "Description": "bool\nDefault value : false",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b957cfc6ac93433e8bc465fa59412a4c",
+          "Name": "Troubleshooting",
+          "Description": " !!! Not an Input !!! \n\n- Troubleshooting -\nIf no points are being returned when trying \nto select a region in a 3D view, a forced \nrefresh of the Active View plane may be necessary.\n\nTo do this perform the following steps:\n1 - Select the Pointcloud Instance\n2 - Use the Zoom-All command, or click a corner of the Viewcube\n3 - Refresh the Node and attempt a region selection\n\nbool\nDefault value : true",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "961b3e0f91ef478ea3e136d17c75aaf4",
+          "Name": "OutputPoints",
+          "Description": "return value",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6cbf5a935c3f4ee2bb35afdbe9687238",
+          "Name": "BestFitPlane",
+          "Description": "return value",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "(Sastrugi_Pointcloud_Geometry) This node allows users to select a specific number of Pointcloud Points by creating a selection region in the Active View."
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "import clr\r\nimport math\r\nfrom collections import deque\r\n\r\n# Import Revit and Dynamo libraries\r\nclr.AddReference('RevitAPI')\r\nclr.AddReference('RevitServices')\r\nfrom Autodesk.Revit.DB import *\r\nfrom RevitServices.Persistence import DocumentManager\r\nfrom RevitServices.Transactions import TransactionManager\r\n\r\n# The input 'points' should be a list of XYZ points (you need to provide this in Dynamo)\r\npoints = IN[0]  # Input: List of XYZ points\r\n\r\n# Function to calculate the Euclidean distance between two points\r\ndef calculate_distance(p1, p2):\r\n    return math.sqrt((p1.X - p2.X)**2 + (p1.Y - p2.Y)**2 + (p1.Z - p2.Z)**2)\r\n\r\n# Function to calculate the average height of the nearest 10 points\r\ndef average_height_of_nearest_points(points, idx, num_neighbors=10):\r\n    distances = []\r\n    for i, p in enumerate(points):\r\n        if i != idx:  # Skip the point itself\r\n            dist = calculate_distance(points[idx], p)\r\n            distances.append((dist, p))  # Store distance with the point\r\n    # Sort by distance and get the nearest 'num_neighbors' points\r\n    distances.sort(key=lambda x: x[0])\r\n    nearest_points = [pt[1] for pt in distances[:num_neighbors]]\r\n    # Calculate the average height (Z-coordinate) of the nearest points\r\n    avg_height = sum([pt.Z for pt in nearest_points]) / len(nearest_points)\r\n    return avg_height\r\n\r\n# Output list for points that meet the condition\r\noutput_points = []\r\n\r\n# Iterate through each point and check the condition\r\nfor i, point in enumerate(points):\r\n    avg_height = average_height_of_nearest_points(points, i)\r\n    if point.Z <= avg_height:\r\n        output_points.append(point)\r\n\r\n# Return the result as the output\r\nOUT = output_points",
+      "VariableInputPorts": true,
+      "Id": "d41538fdce3145b5bbcf44f68061c207",
+      "Inputs": [
+        {
+          "Id": "8726351b017f4c08a2eb52bf55fe3d18",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "bd75a2c49f014c34935a7dabd9f74347",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded IronPython script."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Topography.ByPoints@Autodesk.DesignScript.Geometry.Point[]",
+      "Id": "8a7a388e45ad4fd08a2e98a7d7ab2dae",
+      "Inputs": [
+        {
+          "Id": "697e2588f73d44ada645f089a8d47b4e",
+          "Name": "points",
+          "Description": "The points which define the topography surface.\n\nPoint[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "44134153f38c45348be32dfa75dc9df1",
+          "Name": "Topography",
+          "Description": "A topography surface through the specified points.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Create a topography surface from a list of points.\n\nTopography.ByPoints (points: Point[]): Topography"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Double",
+      "MaximumValue": 100000.0,
+      "MinimumValue": 1000.0,
+      "StepValue": 500.0,
+      "InputValue": 2000.0,
+      "Id": "ec172a310ced4c2988534e657bfd9e90",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "7cbe99053ec943d6a88888828a7d1397",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A slider that produces numeric values."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "961b3e0f91ef478ea3e136d17c75aaf4",
+      "End": "8726351b017f4c08a2eb52bf55fe3d18",
+      "Id": "8acfd1db746f4857b230471671589e07"
+    },
+    {
+      "Start": "bd75a2c49f014c34935a7dabd9f74347",
+      "End": "697e2588f73d44ada645f089a8d47b4e",
+      "Id": "d1707f37b8a7403d8f46c2d7a3b2fe4a"
+    },
+    {
+      "Start": "7cbe99053ec943d6a88888828a7d1397",
+      "End": "61b4260cfac347afa2c8176dadd040df",
+      "Id": "76ca875cfb8a4deca230a3478d19ee9f"
+    }
+  ],
+  "Dependencies": [
+    "94c53925-d6eb-438c-acac-a953771a86ad"
+  ],
+  "Bindings": [
+    {
+      "NodeId": "8a7a388e-45ad-4fd0-8a2e-98a7d7ab2dae",
+      "Binding": {
+        "ByPoints_InClassDecl-1_InFunctionScope-1_Instance0_8a7a388e-45ad-4fd0-8a2e-98a7d7ab2dae": "PFNPQVAtRU5WOkVudmVsb3BlIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOlNPQVAtRU5DPSJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy9zb2FwL2VuY29kaW5nLyIgeG1sbnM6U09BUC1FTlY9Imh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3NvYXAvZW52ZWxvcGUvIiB4bWxuczpjbHI9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vc29hcC9lbmNvZGluZy9jbHIvMS4wIiBTT0FQLUVOVjplbmNvZGluZ1N0eWxlPSJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy9zb2FwL2VuY29kaW5nLyI+DQo8U09BUC1FTlY6Qm9keT4NCjxhMTpDYWxsU2l0ZV94MDAyQl9UcmFjZVNlcmlhbGlzZXJIZWxwZXIgaWQ9InJlZi0xIiB4bWxuczphMT0iaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS9jbHIvbnNhc3NlbS9Qcm90b0NvcmUvUHJvdG9Db3JlJTJDJTIwVmVyc2lvbiUzRDIuMS4wLjc1MDAlMkMlMjBDdWx0dXJlJTNEbmV1dHJhbCUyQyUyMFB1YmxpY0tleVRva2VuJTNEbnVsbCI+DQo8TnVtYmVyT2ZFbGVtZW50cz4xPC9OdW1iZXJPZkVsZW1lbnRzPg0KPEJhc2UtMF9IYXNEYXRhPnRydWU8L0Jhc2UtMF9IYXNEYXRhPg0KPEJhc2UtMF9EYXRhIGlkPSJyZWYtMyI+UEZOUFFWQXRSVTVXT2tWdWRtVnNiM0JsSUhodGJHNXpPbmh6YVQwaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNUzlZVFV4VFkyaGxiV0V0YVc1emRHRnVZMlVpSUhodGJHNXpPbmh6WkQwaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNUzlZVFV4VFkyaGxiV0VpSUhodGJHNXpPbE5QUVZBdFJVNURQU0pvZEhSd09pOHZjMk5vWlcxaGN5NTRiV3h6YjJGd0xtOXlaeTl6YjJGd0wyVnVZMjlrYVc1bkx5SWdlRzFzYm5NNlUwOUJVQzFGVGxZOUltaDBkSEE2THk5elkyaGxiV0Z6TG5odGJITnZZWEF1YjNKbkwzTnZZWEF2Wlc1MlpXeHZjR1V2SWlCNGJXeHVjenBqYkhJOUltaDBkSEE2THk5elkyaGxiV0Z6TG0xcFkzSnZjMjltZEM1amIyMHZjMjloY0M5bGJtTnZaR2x1Wnk5amJISXZNUzR3SWlCVFQwRlFMVVZPVmpwbGJtTnZaR2x1WjFOMGVXeGxQU0pvZEhSd09pOHZjMk5vWlcxaGN5NTRiV3h6YjJGd0xtOXlaeTl6YjJGd0wyVnVZMjlrYVc1bkx5SStEUW84VTA5QlVDMUZUbFk2UW05a2VUNE5DanhoTVRwVFpYSnBZV3hwZW1GaWJHVkpaQ0JwWkQwaWNtVm1MVEVpSUhodGJHNXpPbUV4UFNKb2RIUndPaTh2YzJOb1pXMWhjeTV0YVdOeWIzTnZablF1WTI5dEwyTnNjaTl1YzJGemMyVnRMMUpsZG1sMFUyVnlkbWxqWlhNdVVHVnljMmx6ZEdWdVkyVXZVbVYyYVhSVFpYSjJhV05sY3lVeVF5VXlNRlpsY25OcGIyNGxNMFF5TGpFdU1DNDNOek16SlRKREpUSXdRM1ZzZEhWeVpTVXpSRzVsZFhSeVlXd2xNa01sTWpCUWRXSnNhV05MWlhsVWIydGxiaVV6Ukc1MWJHd2lQZzBLUEhOMGNtbHVaMGxFSUdsa1BTSnlaV1l0TXlJK05USTRNRFZtWlRFdFpqTmlPUzAwWXpKaExXRXlNekV0T0RJNVkyVXdOekpsTWpGaUxUQXdNRE14WmpWa1BDOXpkSEpwYm1kSlJENE5DanhwYm5SSlJENHlNRFEyTXpjOEwybHVkRWxFUGcwS1BDOWhNVHBUWlhKcFlXeHBlbUZpYkdWSlpENE5Dand2VTA5QlVDMUZUbFk2UW05a2VUNE5Dand2VTA5QlVDMUZUbFk2Ulc1MlpXeHZjR1UrRFFvPTwvQmFzZS0wX0RhdGE+DQo8QmFzZS0wX0hhc05lc3RlZERhdGE+ZmFsc2U8L0Jhc2UtMF9IYXNOZXN0ZWREYXRhPg0KPC9hMTpDYWxsU2l0ZV94MDAyQl9UcmFjZVNlcmlhbGlzZXJIZWxwZXI+DQo8L1NPQVAtRU5WOkJvZHk+DQo8L1NPQVAtRU5WOkVudmVsb3BlPg0K"
+      }
+    }
+  ],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.1.0.7500",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "Id": "72b67919181b458d8acd6a9666ec344e",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "❄_PC_Select_Points_By_Region",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 505.00502517171265,
+        "Y": 192.8972360791349
+      },
+      {
+        "Id": "d41538fdce3145b5bbcf44f68061c207",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Python Script",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 977.200000000001,
+        "Y": 199.2
+      },
+      {
+        "Id": "8a7a388e45ad4fd08a2e98a7d7ab2dae",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Topography.ByPoints",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 1274.8,
+        "Y": 168.0
+      },
+      {
+        "Id": "ec172a310ced4c2988534e657bfd9e90",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Name": "Number of Points",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 140.20502517171167,
+        "Y": 102.49723607913489
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "e297fc9d5ce44dbe94b080d3babf694f",
+        "Title": "Inputs",
+        "Nodes": [
+          "72b67919181b458d8acd6a9666ec344e",
+          "ec172a310ced4c2988534e657bfd9e90"
+        ],
+        "Left": 130.20502517171167,
+        "Top": 49.29723607913489,
+        "Width": 684.00000000000091,
+        "Height": 287.40000000000003,
+        "FontSize": 36.0,
+        "InitialTop": 102.49723607913489,
+        "InitialHeight": 264.2,
+        "TextblockHeight": 43.2,
+        "Background": "#FFFFAA45"
+      },
+      {
+        "Id": "d3a292de236b4b03b053d4007e26be55",
+        "Title": "Points Processing and topography creation",
+        "Nodes": [
+          "d41538fdce3145b5bbcf44f68061c207",
+          "8a7a388e45ad4fd08a2e98a7d7ab2dae"
+        ],
+        "Left": 967.200000000001,
+        "Top": 71.6,
+        "Width": 546.399999999999,
+        "Height": 220.2,
+        "FontSize": 36.0,
+        "InitialTop": 168.0,
+        "InitialHeight": 153.79999999999998,
+        "TextblockHeight": 86.4,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 149.82231533075378,
+    "Y": 250.17814714856894,
+    "Zoom": 0.847618571998227
+  }
+}
